@@ -34,7 +34,7 @@ public class Simulador {
 
         // INSTANCIA DE LA CLASE CLUB
 
-        Club club = Club.getSingletonClub(NUM_PELOTAS, NUM_PALOS);								//
+        Club club = Club.getSingletonClub(NUM_PELOTAS, NUM_PALOS);								// Instancia de la clase Club.
 
         club.setJugadores(NUM_EXPERTOS, NUM_NOVATOS, NUM_VUELTAS);								//
 
@@ -68,7 +68,7 @@ public class Simulador {
 
         for (Thread h : hilos) {
 
-            h.start();
+            h.start();                                                                          // Inicio.
 
         }
 
