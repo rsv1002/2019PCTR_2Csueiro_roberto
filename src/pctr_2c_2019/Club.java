@@ -218,6 +218,63 @@ public class Club {
 
     }
 
-    
+    // DEFINICIÓN DE GETTERS
+
+    /**
+     *
+     * Método getJugadores.
+     *
+     * ArrayList de Jugador para mostrar los jugadores.
+     *
+     * @param
+     *
+     * @return jugadores
+     *
+     */
+
+    public static ArrayList<Jugador> getJugadores() {
+
+        return jugadores;
+
+    }
+
+    // DEFINICIÓN DE SETTERS
+
+    /**
+     *
+     * Método setJugadores.
+     *
+     * Método para añadir jugadores y diferenciarlos entre jugadores expertos y jugadores novatos.
+     *
+     * @param expertos
+     *
+     * @param novatos
+     *
+     * @param veces
+     *
+     * @return void
+     *
+     */
+
+    public void setJugadores(int expertos, int novatos, int veces) {
+
+        boolean exp = false;
+
+        for (int i = 1; i <= expertos + novatos; i++) {
+
+            if (i <= expertos) {
+
+                exp = true;
+
+            } else {
+
+                exp = false;
+
+            }
+
+            jugadores.add(new Jugador(i, exp, veces, club));
+
+        }
+    }
 
 }
