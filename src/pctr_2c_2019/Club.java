@@ -166,6 +166,58 @@ public class Club {
 
     }
 
+    /**
+     *
+     * Método invariantePelotas.
+     *
+     * Método invariante para las pelotas, para los objetos pasivos.
+     *
+     * @param pelotasActuales
+     *
+     * @return void
+     *
+     */
+
+    public static void invariantePelotas(int pelotasActuales) {
+
+        int sumaPelotas = 0;
+
+        for (Jugador p : jugadores) {
+
+            sumaPelotas+=p.pelotasActuales ;
+
+        }
+
+        assert sumaPelotas == pelotasActuales : "La invarinate pelotasActuales no cumple la postcondición";
+
+    }
+
+    /**
+     *
+     * Método invariatnePalos.
+     *
+     * Método invariante para los palos, para los objetos pasivos.
+     *
+     * @param palosActuales
+     *
+     * @return void
+     *
+     */
+
+    public static void invariantePalos(int palosActuales) {
+
+        int sumaPalos = 0;
+
+        for (Jugador p : jugadores) {
+
+            sumaPalos+=p.palosActuales ;
+
+        }
+
+        assert sumaPalos == palosActuales : "La invarinate palosActuales no cumple la postcondición";
+
+    }
+
     
 
 }
