@@ -176,4 +176,30 @@ public class Jugador {
 
     }
 
+    // IMPLEMENTACIÓN DE GETTERS
+
+    public int getId() {
+
+        return id;
+
+    }
+
+    public boolean isExperto() {
+
+        return experto;
+
+    }
+
+    public int getNumVueltas() {
+
+        return numVueltas;
+
+    }
+
+    public Club getClub() {
+
+        return elClub;
+
+    }
+
 }
