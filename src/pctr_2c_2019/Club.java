@@ -34,4 +34,49 @@ public class Club {
 
     private static Club club;														//
 
+    /**
+     *
+     * CONSTRUCTOR PRIVADO.
+     *
+     * El contructor privado evita que se cree un constructor por defecto.
+     *
+     * En el inicializamos las variables.
+     *
+     */
+
+    private Club (int numPelotasIniciales, int numPalosIniciales) {
+
+        this.pelotasActuales = numPelotasIniciales;
+
+        this.palosActuales = numPalosIniciales;
+
+        this.acceso = false;
+
+    }
+
+    /**
+     *
+     * INSTANCIA: Singleton.
+     *
+     * Se garantiza que solo tenga una instancia y asi evitar la inicializacion retardada.
+     *
+     */
+
+    public static Club getSingletonClub(int pelotas, int palos) {
+
+        synchronized (Lock) {
+
+            if (club == null) {
+
+                club = new Club(pelotas, palos);
+
+            }
+
+            return club;
+        }
+
+    }
+
+    
+
 }
