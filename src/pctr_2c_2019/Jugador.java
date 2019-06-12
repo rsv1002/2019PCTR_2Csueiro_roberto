@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  */
 
-public class Jugador {
+public class Jugador implements Runnable {
 
     // DEFINICIÓN DE CONSTANTES PARA CONTROL DE INVARIANTES
 
