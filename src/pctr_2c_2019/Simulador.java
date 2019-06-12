@@ -1,5 +1,7 @@
 package pctr_2c_2019;
 
+import java.util.ArrayList;
+
 /**
  *
  * CLASE SIMULADOR.
@@ -30,7 +32,47 @@ public class Simulador {
 
     public static void main (String[] args) {
 
+        // INSTANCIA DE LA CLASE CLUB
 
+        Club club = Club.getSingletonClub(NUM_PELOTAS, NUM_PALOS);								//
+
+        club.setJugadores(NUM_EXPERTOS, NUM_NOVATOS, NUM_VUELTAS);								//
+
+        // CREACIÓN DE HILOS
+
+        /**
+         *
+         * ArrayList VS Array.
+         *
+         * El ArrayList tiene la ventaja de tener un tamaño dinámico, mientras que el de un Array es definido en su creación.
+         *
+         * Un ArrayList no puede contener datos primitivos, sólo Objetos.
+         *
+         * El ArrayList permite comprobar que los datos que se añaden a la colección son del tipo correcto en tiempo de compilación.
+         *
+         */
+
+        ArrayList<Thread> hilos = new ArrayList<Thread>();										// ArrayList de hilos.
+
+        ArrayList<Jugador> jugadores = club.getJugadores();										// ArrayList de jugadores.
+
+        // ADICIÓN DE UN HILO POR CADA JUGADOR
+
+        for (Jugador j : jugadores) {
+
+            hilos.add(new Thread(j));
+
+        }
+
+        // INICIALIZACIÓN DE LOS HILOS DE LOS JUGADORES
+
+        for (Thread h : hilos) {
+
+            h.start();
+
+        }
+
+    }
 
     }
 }
