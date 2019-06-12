@@ -77,6 +77,95 @@ public class Club {
 
     }
 
+    // MÉTODOS SYNCHRONIZED
+
+    /**
+     *
+     * Método sincronizado reservar.
+     *
+     * @param pelotas
+     *
+     * @param palos
+     *
+     * @throws InterruptedException
+     *
+     * @return void
+     *
+     */
+
+    public synchronized void reservar (int pelotas, int palos) throws InterruptedException {
+
+        while (acceso) {
+
+            wait();
+
+        }
+
+        acceso = true;
+
+        while (pelotas > pelotasActuales || palos > palosActuales) {
+
+            acceso = false;
+
+            wait();
+
+            acceso = true;
+
+        }
+
+        pelotasActuales = pelotasActuales - pelotas;
+
+        palosActuales = palosActuales - palos;
+
+        acceso = false;
+
+        notifyAll();
+
+        invariantePalos(palos);
+
+        invariantePelotas(pelotas);
+
+
+    }
+
+    /**
+     *
+     * Método sincronizado devolver.
+     *
+     * @param pelotas
+     *
+     * @param palos
+     *
+     * @throws InterruptedException
+     *
+     * @return void
+     *
+     */
+
+    public synchronized void devolver (int pelotas, int palos) throws InterruptedException {
+
+        while (acceso) {
+
+            wait();
+
+        }
+
+        acceso = true;
+
+        pelotasActuales = pelotasActuales + pelotas;
+
+        palosActuales = palosActuales + palos;
+
+        acceso = false;
+
+        notifyAll();
+
+        invariantePalos(palos);
+
+        invariantePelotas(pelotas);
+
+    }
+
     
 
 }
