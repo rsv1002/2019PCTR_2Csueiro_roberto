@@ -94,4 +94,86 @@ public class Jugador {
 
     }
 
+    // MÉTODO RUN PARA LOS HILOS
+
+    @Override
+    public void run() {
+
+        int pelotas, palos, i;
+
+        if (experto) {
+
+            pelotas = MAX_PELOTAS_EXPERTOS;
+
+            palos = ThreadLocalRandom.current().nextInt(MIN_PALOS_EXPERTOS, MAX_PALOS_EXPERTOS);
+
+        } else {
+
+            pelotas = ThreadLocalRandom.current().nextInt(MIN_PELOTAS_NOVATOS, MAX_PELOTAS_NOVATOS);
+
+            palos = MAX_PALOS_NOVATOS;
+
+        }
+
+        for (i = 0; i < numVueltas; i++) {
+
+            System.out.println(this.ident + "[" + pelotas + "," + palos + "] reservar");
+
+            try {
+
+                elClub.reservar(pelotas, palos);
+
+                pelotasActuales += pelotas;
+
+                palosActuales += palos;
+
+            } catch (InterruptedException e1) {
+
+                e1.printStackTrace();
+
+            }
+
+            System.out.println(this.ident + "[" + pelotasActuales + "," + palosActuales + "] jugar");
+
+            try {
+
+                Thread.sleep(tiempo);
+
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+
+            }
+
+            System.out.println(this.ident + "[" + pelotasActuales + "," + palosActuales + "] devolver");
+
+            try {
+
+                elClub.devolver(pelotasActuales, palosActuales);
+
+                pelotasActuales -= pelotasActuales;
+
+                palosActuales -= palosActuales;
+
+            } catch (InterruptedException e1) {
+
+                e1.printStackTrace();
+
+            }
+
+            System.out.println(this.ident + "[" + pelotas + "," + palos + "] descansar");
+
+            try {
+
+                Thread.sleep(tiempo);
+
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+
+            }
+        }
+
+    }
+
 }
